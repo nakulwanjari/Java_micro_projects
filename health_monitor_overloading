@@ -1,0 +1,56 @@
+import java.util.*;
+
+public class health {
+
+    public static int monitor(int weight, int height) {
+        return weight / (height*height);
+    }
+
+    public static double monitor(int weight, int height, int age, char gender) {
+        double calories;
+
+        if (gender == 'M') {
+            calories = 10 * weight + 6.25 * height - 5 * age + 5;
+        } else {
+            calories = 10 * weight + 6.25 * height - 5 * age - 161;
+        }
+
+        return calories;
+    }
+
+    public static int monitor(int age) {
+        return 220 - age;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int weight, height, age;
+        char gender;
+
+        System.out.println("Enter Weight, Height, Age, and Gender (M/F)");
+        weight = sc.nextInt();
+        height = sc.nextInt();
+        age = sc.nextInt();
+        gender = sc.next().charAt(0);
+
+        int bmi = monitor(weight, height);
+        System.out.println("BMI: " + bmi);
+
+        // BMI scale
+        if (bmi < 18.5) {
+            System.out.println("Underweight");
+        } else if (bmi >= 18.5 && bmi <= 24.9) {
+            System.out.println("Normal weight");
+        } else if (bmi >= 25 && bmi <= 29.9) {
+            System.out.println("Overweight");
+        } else {
+            System.out.println("Obesity");
+        }
+
+        double calories = monitor(weight, height, age, gender);
+        System.out.println("Calories/day: " + calories);
+
+        int maxHeartRate = monitor(age);
+        System.out.println("Max Heart Rate: " + maxHeartRate);
+    }
+}
